@@ -5,7 +5,10 @@ import requests
 import utils
 
 
-utils.initialize_page_config("Dashboard", "🎉 Welcome to Knowledge Base App! 🎉")
+utils.initialize_page_config("Dashboard", load_background=utils.should_load_bg(st.secrets["params"]["load_bg"]))
+utils.load_asset("assets/styles.css")
+utils.set_page_header("🎉 Welcome to Knowledge Base App! 🎉")
+
 
 with st.expander("What is it?", expanded=True):
     st.markdown("""

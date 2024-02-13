@@ -6,7 +6,9 @@ from streamlit_js_eval import streamlit_js_eval
 import utils
 
 
-utils.initialize_page_config("Add Document", "Wanna contribute?")
+utils.initialize_page_config("Add Document", load_background=utils.should_load_bg(st.secrets["params"]["load_bg"]))
+utils.load_asset("assets/styles.css")
+utils.set_page_header("Wanna contribute?")
 
 
 def disable_button():

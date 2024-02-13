@@ -4,13 +4,14 @@ import streamlit as st
 import requests
 import utils
 
-
-utils.initialize_page_config("Search Documents", "Oi, show me something!")
+utils.initialize_page_config("Search Documents", load_background=utils.should_load_bg(st.secrets["params"]["load_bg"]))
+utils.load_asset("assets/styles.css")
+utils.set_page_header("Oi, show me something!")
 
 
 def display_documents_in_expander(documents):
-    for doc in documents:
-        expander_title = f"{doc['title']}"
+    for idx, doc in enumerate(documents, start=1):
+        expander_title = f"({idx}) {doc['title']}"
         with st.expander(expander_title, expanded=True):
             col1, col2 = st.columns(2)
             with col1:

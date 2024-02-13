@@ -1,0 +1,9 @@
+div[data-testid="stExpander"] details summary p{
+    font-size: 1.5rem;
+}
+
+.form-heading {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}

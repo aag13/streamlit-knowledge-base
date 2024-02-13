@@ -8,7 +8,9 @@ from streamlit_js_eval import streamlit_js_eval
 import utils
 
 
-utils.initialize_page_config("Update Document", "Wanna redeem yourself?")
+utils.initialize_page_config("Update Document", load_background=utils.should_load_bg(st.secrets["params"]["load_bg"]))
+utils.load_asset("assets/styles.css")
+utils.set_page_header("Wanna redeem yourself?")
 
 
 def disable_doc_load_button():
