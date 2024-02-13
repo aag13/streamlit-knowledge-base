@@ -8,8 +8,9 @@ from streamlit_js_eval import streamlit_js_eval
 import utils
 
 
-utils.initialize_page_config("Update Document", load_background=utils.should_load_bg(st.secrets["params"]["load_bg"]))
+utils.initialize_page_config("Update Document")
 utils.load_asset("assets/styles.css")
+utils.load_background_image()
 utils.set_page_header("Wanna redeem yourself?")
 
 
@@ -165,7 +166,7 @@ if utils.get_session_var("doc_load_on_click") is None:
 doc_id_container = st.container()
 with doc_id_container:
     with st.form("doc_id_form"):
-        doc_load_id = st.text_input("Doc ID", utils.get_session_var("current_doc_id"))
+        doc_load_id = st.text_input("Doc ID *", utils.get_session_var("current_doc_id"))
         doc_id_submitted = st.form_submit_button("Load Document", on_click=disable_doc_load_button, disabled=utils.get_session_var("doc_load_button_disabled"))
 
 

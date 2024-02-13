@@ -2,6 +2,21 @@ div[data-testid="stExpander"] details summary p{
     font-size: 1.5rem;
 }
 
+div[data-testid="stForm"] {
+    background-color: white;
+    opacity: 1;
+}
+
+div[data-testid="stExpander"] {
+    background-color: white;
+    opacity: 1;
+}
+
+div[data-testid="stNotification"] {
+    background-color: white;
+    opacity: 1;
+}
+
 .form-heading {
   text-align: center;
   font-size: 2rem;

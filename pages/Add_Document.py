@@ -6,8 +6,9 @@ from streamlit_js_eval import streamlit_js_eval
 import utils
 
 
-utils.initialize_page_config("Add Document", load_background=utils.should_load_bg(st.secrets["params"]["load_bg"]))
+utils.initialize_page_config("Add Document")
 utils.load_asset("assets/styles.css")
+utils.load_background_image()
 utils.set_page_header("Wanna contribute?")
 
 
@@ -80,7 +81,6 @@ if submitted:
                 store_response_msg_type(parsed_response.get("message"), "success")
             else:
                 store_response_msg_type(parsed_response.get("message"), "error")
-
         except Exception as exp:
             store_response_msg_type(exp, "error")
 

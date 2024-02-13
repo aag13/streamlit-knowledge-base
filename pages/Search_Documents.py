@@ -4,8 +4,10 @@ import streamlit as st
 import requests
 import utils
 
-utils.initialize_page_config("Search Documents", load_background=utils.should_load_bg(st.secrets["params"]["load_bg"]))
+
+utils.initialize_page_config("Search Documents")
 utils.load_asset("assets/styles.css")
+utils.load_background_image()
 utils.set_page_header("Oi, show me something!")
 
 
@@ -13,6 +15,7 @@ def display_documents_in_expander(documents):
     for idx, doc in enumerate(documents, start=1):
         expander_title = f"({idx}) {doc['title']}"
         with st.expander(expander_title, expanded=True):
+            # st.markdown("-" * 10)
             col1, col2 = st.columns(2)
             with col1:
                 st.markdown(f"**Doc ID:** {doc['doc_id']}")
@@ -21,6 +24,7 @@ def display_documents_in_expander(documents):
             st.markdown(f"**Category:** {doc['category']}")
             st.markdown(f"**Tag:** {doc['tags']}")
             st.markdown(f"**Content:** {doc['md_content']}")
+            st.markdown("-" * 10)
             create_col1, update_col2 = st.columns(2)
             with create_col1:
                 created_time = datetime.fromtimestamp(int(int(doc['created_at_ms'])/1000)).strftime("%d/%m/%Y, %H:%M:%S")
@@ -50,7 +54,7 @@ def show_response_msg_if_any():
                 results_container.subheader(f"Found ({count_docs.get('count')})")
                 display_documents_in_expander(count_docs.get('docs'))
             else:
-                results_container.write("No results found.")
+                st.error("No results found.")
 
         utils.remove_session_var("message_to_show")
         utils.remove_session_var("msg_type")
@@ -65,8 +69,8 @@ utils.set_session_var("button_disabled", False, dont_overwrite=True)
 form_container = st.container()
 with form_container:
     with st.form("my_form"):
-        category = st.selectbox("Category", ["All", *st.secrets["params"]["category_list"]])
-        text = st.text_input("Search")
+        category = st.selectbox("Category *", ["All", *st.secrets["params"]["category_list"]])
+        text = st.text_input("Search *")
         submitted = st.form_submit_button("Submit", on_click=disable_button, disabled=utils.get_session_var("button_disabled"))
 
 results_container = st.container()
